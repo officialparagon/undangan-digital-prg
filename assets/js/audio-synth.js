@@ -171,7 +171,8 @@ class PartyAudioEngine {
   play(customUrl = null) {
     if (customUrl && customUrl.trim() !== '') {
       this.mode = 'custom';
-      if (!this.customAudio || this.customAudio.src !== customUrl) {
+      const isSameSrc = this.customAudio && (this.customAudio.src === customUrl || this.customAudio.src.endsWith(customUrl));
+      if (!isSameSrc) {
         if (this.customAudio) {
           this.customAudio.pause();
         }

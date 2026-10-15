@@ -454,7 +454,7 @@ Sampai ketemu di PRG PARTY! 🩵
       discordUrl: 'https://discord.gg/P3NJMKk5Wz',
       communityUrl: 'https://www.roblox.com/communities/728759089/PARAGON-COMMUNITY#!/about',
       tiktokUrl: 'https://www.tiktok.com/@prgxparagon_?_r=1&_t=ZS-9ASPmgSwmCl',
-      audioUrl: ''
+      audioUrl: 'assets/audio/manado-vibes.mp3'
     };
 
     let cur = defaultSettings;
