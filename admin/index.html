@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🛠️ ADMIN PORTAL - KELOLA UNDANGAN PARAGON PARTY (PRG)</title>
+  <title>🛠️ ADMIN PORTAL - KELOLA UNDANGAN JARANG PULANG (JPxPRG)</title>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -40,13 +40,13 @@
     <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl overflow-hidden border border-cyan-400 shadow-lg shadow-cyan-500/20">
-          <img src="../assets/images/paragon-party-poster.jpg" alt="PRG Logo" class="w-full h-full object-cover">
+          <img src="../assets/images/jarang-pulang-poster.jpg" alt="JP Logo" class="w-full h-full object-cover">
         </div>
         <div>
           <h1 class="font-orbitron font-extrabold text-sm sm:text-base text-cyan-300 tracking-wider">
-            PRG PARAGON ADMIN
+            JPxPRG ADMIN PORTAL
           </h1>
-          <p class="text-[11px] text-slate-400 font-rajdhani">Digital Invitation & Guest Manager</p>
+          <p class="text-[11px] text-slate-400 font-rajdhani">Digital Invitation & Guest Manager (Jarang Pulang)</p>
         </div>
       </div>
 
@@ -56,7 +56,7 @@
           target="_blank" 
           class="cyber-btn cyber-btn-outline text-xs py-2 px-3 sm:px-4"
         >
-          <span>👁️ LIHAT UNDANGAN</span>
+          <span>👁️ LIHAT UNDANGAN JP</span>
         </a>
       </div>
     </div>
@@ -102,7 +102,7 @@
 
         <div class="border-b border-cyan-500/20 pb-3">
           <h2 class="text-lg font-bold font-orbitron text-white flex items-center gap-2">
-            <span>✨</span> BUAT UNDANGAN KHUSUS
+            <span>✨</span> BUAT UNDANGAN KHUSUS JARANG PULANG
           </h2>
           <p class="text-xs text-slate-400 mt-0.5">
             Buat link khusus sesuai nama tamu & kirim langsung via WhatsApp!
@@ -117,7 +117,7 @@
             <input 
               type="text" 
               id="singleGuestName" 
-              placeholder="Contoh: Bro Bryan, Reza PRG, Kak Sarah..."
+              placeholder="Contoh: Bro Bryan, Reza JP, Kak Sarah..."
               class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 text-sm"
               required
             >
@@ -132,11 +132,11 @@
                 id="singleGuestRole"
                 class="w-full px-3 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white focus:outline-none focus:border-cyan-400 text-sm"
               >
-                <option value="FREE VVIP" selected>FREE VVIP (Default)</option>
+                <option value="FREE VIP" selected>FREE VIP (Default)</option>
                 <option value="VIP GUEST">VIP GUEST</option>
                 <option value="SPECIAL INVITATION">SPECIAL INVITATION</option>
                 <option value="PARAGON FAMS">PARAGON FAMS</option>
-                <option value="ROBLOX COMMUNITY">ROBLOX COMMUNITY</option>
+                <option value="JP FAMS">JP FAMS</option>
               </select>
             </div>
 
@@ -156,7 +156,7 @@
           <!-- Live Generated Link Preview -->
           <div class="p-3 rounded-xl bg-black/60 border border-cyan-500/30 space-y-2">
             <div class="flex items-center justify-between text-[11px] text-cyan-300 font-bold font-rajdhani">
-              <span>PREVIEW LINK UNDANGAN:</span>
+              <span>PREVIEW LINK UNDANGAN JP:</span>
               <span class="text-slate-400">Auto-generated</span>
             </div>
             <input 
@@ -197,10 +197,10 @@
         <div class="space-y-4">
           <div class="border-b border-cyan-500/20 pb-3">
             <h2 class="text-lg font-bold font-orbitron text-white flex items-center gap-2">
-              <span>⚡</span> BUAT BANYAK UNDANGAN SEKALIGUS (BATCH)
+              <span>⚡</span> BUAT BANYAK UNDANGAN JP SEKALIGUS
             </h2>
             <p class="text-xs text-slate-400 mt-0.5">
-              Masukkan beberapa nama sekaligus (1 baris 1 nama). Sistem akan otomatis generate link untuk semuanya!
+              Masukkan beberapa nama sekaligus (1 baris 1 nama). Sistem akan otomatis generate link Jarang Pulang untuk semuanya!
             </p>
           </div>
 
@@ -212,7 +212,7 @@
               <textarea 
                 id="batchNamesText" 
                 rows="6" 
-                placeholder="Fikri&#10;Bryan&#10;Nadia&#10;Aldi&#10;Team PRG Alpha"
+                placeholder="Fikri&#10;Bryan&#10;Nadia&#10;Aldi&#10;Squad JPxPRG"
                 class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 text-sm font-sans"
                 required
               ></textarea>
@@ -226,9 +226,10 @@
                 id="batchRoleSelect"
                 class="w-full px-3 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white focus:outline-none focus:border-cyan-400 text-sm"
               >
-                <option value="FREE VVIP" selected>FREE VVIP</option>
+                <option value="FREE VIP" selected>FREE VIP</option>
                 <option value="VIP GUEST">VIP GUEST</option>
                 <option value="PARAGON FAMS">PARAGON FAMS</option>
+                <option value="JP FAMS">JP FAMS</option>
               </select>
             </div>
 
@@ -252,10 +253,10 @@
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-cyan-500/20 pb-4">
         <div>
           <h2 class="text-xl font-bold font-orbitron text-white flex items-center gap-2">
-            <span>📋</span> DAFTAR TAMU UNDANGAN
+            <span>📋</span> DAFTAR TAMU UNDANGAN (JARANG PULANG)
           </h2>
           <p class="text-xs text-slate-400">
-            Kelola link, pantau status RSVP, dan bagikan ke tamu Paragon Party
+            Kelola link, pantau status RSVP, dan bagikan ke tamu Jarang Pulang
           </p>
         </div>
 
@@ -311,7 +312,7 @@
             </tr>
           </thead>
           <tbody id="guestTableBody" class="divide-y divide-slate-800/60 font-sans">
-            <!-- Dynamically populated by admin.js -->
+            <!-- Dynamically populated by admin-jp.js -->
           </tbody>
         </table>
       </div>
@@ -324,10 +325,10 @@
 
       <div class="border-b border-cyan-500/20 pb-3">
         <h2 class="text-lg font-bold font-orbitron text-white flex items-center gap-2">
-          <span>💬</span> DINDING UCAPAN & DOA (MODERATION)
+          <span>💬</span> DINDING UCAPAN & DOA (JARANG PULANG)
         </h2>
         <p class="text-xs text-slate-400">
-          Daftar pesan yang dikirim oleh pengunjung di halaman undangan publik.
+          Daftar pesan yang dikirim oleh pengunjung di halaman undangan Jarang Pulang.
         </p>
       </div>
 
@@ -355,10 +356,10 @@
 
       <div class="border-b border-cyan-500/20 pb-3">
         <h2 class="text-lg font-bold font-orbitron text-white flex items-center gap-2">
-          <span>⚙️</span> PENGATURAN EVENT & TAUTAN RESMI
+          <span>⚙️</span> PENGATURAN EVENT JARANG PULANG
         </h2>
         <p class="text-xs text-slate-400">
-          Atur link Roblox, Discord, TikTok, dan URL audio musik custom.
+          Atur link Roblox, Discord, TikTok, dan URL audio musik.
         </p>
       </div>
 
@@ -411,17 +412,13 @@
 
         <div>
           <label class="block text-xs font-bold text-cyan-300 uppercase tracking-wider mb-1 font-rajdhani">
-            Custom Audio URL (MP3 / Direct Audio Stream) - Opsional
+            Custom Audio URL (MP3 / Direct Audio Stream)
           </label>
           <input 
             type="url" 
             id="settingAudioUrl" 
-            placeholder="Kosongkan jika ingin memakai procedural synth party EDM bawaan"
             class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-400"
           >
-          <p class="text-[11px] text-slate-400 mt-1">
-            * Jika dikosongkan, web otomatis menggunakan synth EDM club beat bawaan tanpa perlu file eksternal.
-          </p>
         </div>
 
         <div class="pt-2">
@@ -434,6 +431,6 @@
 
   </main>
 
-  <script src="../assets/js/admin.js"></script>
+  <script src="../assets/js/admin-jp.js"></script>
 </body>
 </html>

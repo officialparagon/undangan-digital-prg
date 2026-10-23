@@ -3,14 +3,15 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Determine Base URL pointing to jarang-pulang.html
+  // Determine Base URL pointing to index.html
   let baseUrl = window.location.origin + window.location.pathname;
-  baseUrl = baseUrl.replace('/admin-jp.html', '/jarang-pulang.html')
-                   .replace('/admin.html', '/jarang-pulang.html')
-                   .replace('/index.html', '/jarang-pulang.html');
-  if (!baseUrl.endsWith('jarang-pulang.html')) {
-    if (!baseUrl.endsWith('/')) baseUrl += '/';
-    baseUrl += 'jarang-pulang.html';
+  baseUrl = baseUrl.replace('/admin-jp.html', '/index.html')
+                   .replace('/admin.html', '/index.html')
+                   .replace('/admin/index.html', '/index.html')
+                   .replace('/admin/', '/')
+                   .replace('/jarang-pulang.html', '/index.html');
+  if (!baseUrl.endsWith('index.html') && !baseUrl.endsWith('/')) {
+    baseUrl += '/';
   }
 
   // State keys in LocalStorage for Jarang Pulang
