@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🛠️ ADMIN PORTAL - KELOLA UNDANGAN JARANG PULANG (JPxPRG)</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              cyan: '#00f0ff',
+              blue: '#0077fe',
+              dark: '#030712',
+              card: 'rgba(8, 18, 38, 0.85)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="text-slate-100 antialiased min-h-screen pb-16 selection:bg-cyan-500 selection:text-black">
+
+  <div class="cyber-grid"></div>
+  <div class="ambient-lights">
+    <div class="light-orb orb-1"></div>
+    <div class="light-orb orb-2"></div>
+  </div>
+
+  <!-- NAVIGATION BAR -->
+  <header class="relative z-20 border-b border-cyan-500/30 bg-slate-950/80 backdrop-blur-md sticky top-0">
+    <div class="max-w-6xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl overflow-hidden border border-cyan-400 shadow-lg shadow-cyan-500/20">
+          <img src="assets/images/jarang-pulang-poster.jpg" alt="JP Logo" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <h1 class="font-orbitron font-extrabold text-sm sm:text-base text-cyan-300 tracking-wider">
+            JPxPRG ADMIN PORTAL
+          </h1>
+          <p class="text-[11px] text-slate-400 font-rajdhani">Digital Invitation & Guest Manager (Jarang Pulang)</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a 
+          href="jarang-pulang.html" 
+          target="_blank" 
+          class="cyber-btn cyber-btn-outline text-xs py-2 px-3 sm:px-4"
+        >
+          <span>👁️ LIHAT UNDANGAN JP</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN ADMIN CONTAINER -->
+  <main class="relative z-10 max-w-6xl mx-auto px-4 py-8 space-y-8">
+
+    <!-- STATS OVERVIEW CARDS -->
+    <section class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+      <div class="glass-card p-4 sm:p-5 text-center">
+        <div class="text-xs uppercase font-rajdhani font-bold text-slate-400">Total Undangan</div>
+        <div class="text-2xl sm:text-3xl font-black font-orbitron text-cyan-300 mt-1" id="statTotalGuests">0</div>
+        <div class="text-[10px] text-slate-500 mt-0.5">Daftar dibuat</div>
+      </div>
+
+      <div class="glass-card p-4 sm:p-5 text-center border-cyan-500/40">
+        <div class="text-xs uppercase font-rajdhani font-bold text-cyan-400">Konfirmasi Hadir</div>
+        <div class="text-2xl sm:text-3xl font-black font-orbitron text-emerald-400 mt-1" id="statHadir">0</div>
+        <div class="text-[10px] text-emerald-500/80 mt-0.5">Siap seru-seruan 🔥</div>
+      </div>
+
+      <div class="glass-card p-4 sm:p-5 text-center border-amber-500/30">
+        <div class="text-xs uppercase font-rajdhani font-bold text-amber-400">Masih Ragu</div>
+        <div class="text-2xl sm:text-3xl font-black font-orbitron text-amber-400 mt-1" id="statRagu">0</div>
+        <div class="text-[10px] text-amber-500/80 mt-0.5">Menunggu konfirmasi</div>
+      </div>
+
+      <div class="glass-card p-4 sm:p-5 text-center border-rose-500/30">
+        <div class="text-xs uppercase font-rajdhani font-bold text-rose-400">Berhalangan</div>
+        <div class="text-2xl sm:text-3xl font-black font-orbitron text-rose-400 mt-1" id="statAbsen">0</div>
+        <div class="text-[10px] text-rose-500/80 mt-0.5">Absen / izin</div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: INVITATION GENERATOR (SINGLE & BULK) -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+      <!-- Single Guest Generator -->
+      <div class="glass-card p-6 space-y-5">
+        <div class="crystal-corner-tl"></div>
+        <div class="crystal-corner-br"></div>
+
+        <div class="border-b border-cyan-500/20 pb-3">
+          <h2 class="text-lg font-bold font-orbitron text-white flex items-center gap-2">
+            <span>✨</span> BUAT UNDANGAN KHUSUS JARANG PULANG
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">
+            Buat link khusus sesuai nama tamu & kirim langsung via WhatsApp!
+          </p>
+        </div>
+
+        <form id="singleInviteForm" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-cyan-300 uppercase tracking-wider mb-1 font-rajdhani">
+              Nama Tamu / Penerima Undangan *
+            </label>
+            <input 
+              type="text" 
+              id="singleGuestName" 
+              placeholder="Contoh: Bro Bryan, Reza JP, Kak Sarah..."
+              class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 text-sm"
+              required
+            >
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-cyan-300 uppercase tracking-wider mb-1 font-rajdhani">
+                Badge / Kategori
+              </label>
+              <select 
+                id="singleGuestRole"
+                class="w-full px-3 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white focus:outline-none focus:border-cyan-400 text-sm"
+              >
+                <option value="FREE VIP" selected>FREE VIP (Default)</option>
+                <option value="VIP GUEST">VIP GUEST</option>
+                <option value="SPECIAL INVITATION">SPECIAL INVITATION</option>
+                <option value="PARAGON FAMS">PARAGON FAMS</option>
+                <option value="JP FAMS">JP FAMS</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-cyan-300 uppercase tracking-wider mb-1 font-rajdhani">
+                Nomor WhatsApp (Opsional)
+              </label>
+              <input 
+                type="text" 
+                id="singleGuestPhone" 
+                placeholder="0812xxxx atau 62812xxxx"
+                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 text-sm"
+              >
+            </div>
+          </div>
+
+          <!-- Live Generated Link Preview -->
+          <div class="p-3 rounded-xl bg-black/60 border border-cyan-500/30 space-y-2">
+            <div class="flex items-center justify-between text-[11px] text-cyan-300 font-bold font-rajdhani">
+              <span>PREVIEW LINK UNDANGAN JP:</span>
+              <span class="text-slate-400">Auto-generated</span>
+            </div>
+            <input 
+              type="text" 
+              id="previewGeneratedUrl" 
+              readonly 
+              class="w-full px-3 py-2 text-xs bg-slate-950 rounded border border-cyan-900/60 text-cyan-200 select-all font-mono"
+            >
+            <div class="flex gap-2 pt-1">
+              <button 
+                type="button" 
+                id="btnCopyPreviewUrl" 
+                class="cyber-btn cyber-btn-outline text-xs py-1.5 px-3 flex-1"
+              >
+                📋 SALIN LINK
+              </button>
+              <button 
+                type="button" 
+                id="btnWhatsAppPreview" 
+                class="cyber-btn text-xs py-1.5 px-3 flex-1 bg-emerald-500 hover:bg-emerald-400 text-black border-none"
+              >
+                💬 KIRIM WA
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="cyber-btn w-full py-3 text-xs sm:text-sm">
+            <span>💾 SIMPAN KE DAFTAR TAMU</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Batch / Bulk Invitation Generator -->
+      <div class="glass-card p-6 space-y-5 flex flex-col justify-between">
+        <div class="crystal-corner-tl"></div>
+        <div class="crystal-corner-br"></div>
+
+        <div class="space-y-4">
+          <div class="border-b border-cyan-500/20 pb-3">
+            <h2 class="text-lg font-bold font-orbitron text-white flex items-center gap-2">
+              <span>⚡</span> BUAT BANYAK UNDANGAN JP SEKALIGUS
+            </h2>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Masukkan beberapa nama sekaligus (1 baris 1 nama). Sistem akan otomatis generate link Jarang Pulang untuk semuanya!
+            </p>
+          </div>
+
+          <form id="batchInviteForm" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-cyan-300 uppercase tracking-wider mb-1 font-rajdhani">
+                Daftar Nama Tamu (Satu per baris)
+              </label>
+              <textarea 
+                id="batchNamesText" 
+                rows="6" 
+                placeholder="Fikri&#10;Bryan&#10;Nadia&#10;Aldi&#10;Squad JPxPRG"
+                class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 text-sm font-sans"
+                required
+              ></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-cyan-300 uppercase tracking-wider mb-1 font-rajdhani">
+                Kategori Untuk Semua Nama Di Atas
+              </label>
+              <select 
+                id="batchRoleSelect"
+                class="w-full px-3 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white focus:outline-none focus:border-cyan-400 text-sm"
+              >
+                <option value="FREE VIP" selected>FREE VIP</option>
+                <option value="VIP GUEST">VIP GUEST</option>
+                <option value="PARAGON FAMS">PARAGON FAMS</option>
+                <option value="JP FAMS">JP FAMS</option>
+              </select>
+            </div>
+
+            <button type="submit" class="cyber-btn w-full py-3 text-xs sm:text-sm">
+              <span>🚀 GENERATE SEMUA SEKALIGUS</span>
+            </button>
+          </form>
+        </div>
+
+        <p class="text-[11px] text-slate-400 italic">
+          💡 Tips: Nama yang sudah di-generate akan muncul di tabel daftar tamu di bawah dan siap dibagikan satu per satu.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 2: GUEST LIST TABLE & EXPORT -->
+    <section class="glass-card p-6 space-y-5">
+      <div class="crystal-corner-tl"></div>
+      <div class="crystal-corner-br"></div>
+
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-cyan-500/20 pb-4">
+        <div>
+          <h2 class="text-xl font-bold font-orbitron text-white flex items-center gap-2">
+            <span>📋</span> DAFTAR TAMU UNDANGAN (JARANG PULANG)
+          </h2>
+          <p class="text-xs text-slate-400">
+            Kelola link, pantau status RSVP, dan bagikan ke tamu Jarang Pulang
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button id="btnExportCsv" class="cyber-btn cyber-btn-outline text-xs py-2 px-3">
+            📥 EXCEL (CSV)
+          </button>
+          <button id="btnExportJson" class="cyber-btn cyber-btn-outline text-xs py-2 px-3">
+            💾 BACKUP JSON
+          </button>
+          <label class="cyber-btn cyber-btn-outline text-xs py-2 px-3 cursor-pointer">
+            📤 IMPORT JSON
+            <input type="file" id="fileImportJson" accept=".json" class="hidden">
+          </label>
+        </div>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="flex flex-col sm:flex-row items-center gap-3">
+        <div class="relative flex-1 w-full">
+          <input 
+            type="text" 
+            id="searchGuestInput" 
+            placeholder="Cari nama tamu atau badge..."
+            class="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-cyan-400"
+          >
+          <span class="absolute left-3 top-2.5 text-slate-400 text-xs">🔍</span>
+        </div>
+
+        <select 
+          id="filterStatusSelect" 
+          class="px-3 py-2 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-400 w-full sm:w-auto"
+        >
+          <option value="all">Semua Status Kehadiran</option>
+          <option value="hadir">✓ Hadir</option>
+          <option value="ragu">? Ragu</option>
+          <option value="tidak">✕ Absen</option>
+          <option value="pending">Belum Konfirmasi</option>
+        </select>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto rounded-xl border border-cyan-500/20 bg-slate-950/40">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-slate-900/80 text-[11px] font-orbitron text-cyan-300 uppercase border-b border-cyan-500/20">
+            <tr>
+              <th class="py-3 px-3">No</th>
+              <th class="py-3 px-3">Nama Tamu</th>
+              <th class="py-3 px-3">Kategori</th>
+              <th class="py-3 px-3">Status RSVP</th>
+              <th class="py-3 px-3">Link Undangan</th>
+              <th class="py-3 px-3">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="guestTableBody" class="divide-y divide-slate-800/60 font-sans">
+            <!-- Dynamically populated by admin-jp.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 3: WISHES MODERATION -->
+    <section class="glass-card p-6 space-y-4">
+      <div class="crystal-corner-tl"></div>
+      <div class="crystal-corner-br"></div>
+
+      <div class="border-b border-cyan-500/20 pb-3">
+        <h2 class="text-lg font-bold font-orbitron text-white flex items-center gap-2">
+          <span>💬</span> DINDING UCAPAN & DOA (JARANG PULANG)
+        </h2>
+        <p class="text-xs text-slate-400">
+          Daftar pesan yang dikirim oleh pengunjung di halaman undangan Jarang Pulang.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto rounded-xl border border-cyan-500/20 bg-slate-950/40">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-900/80 text-[11px] font-orbitron text-cyan-300 uppercase border-b border-cyan-500/20">
+            <tr>
+              <th class="py-2.5 px-3">Pengirim</th>
+              <th class="py-2.5 px-3">Status</th>
+              <th class="py-2.5 px-3">Pesan / Ucapan</th>
+              <th class="py-2.5 px-3 text-right">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="adminWishesTable" class="divide-y divide-slate-800/60">
+            <!-- Populated dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 4: EVENT SETTINGS & AUDIO CUSTOMIZER -->
+    <section class="glass-card p-6 space-y-5">
+      <div class="crystal-corner-tl"></div>
+      <div class="crystal-corner-br"></div>
+
+      <div class="border-b border-cyan-500/20 pb-3">
+        <h2 class="text-lg font-bold font-orbitron text-white flex items-center gap-2">
+          <span>⚙️</span> PENGATURAN EVENT JARANG PULANG
+        </h2>
+        <p class="text-xs text-slate-400">
+          Atur link Roblox, Discord, TikTok, dan URL audio musik.
+        </p>
+      </div>
+
+      <form id="eventSettingsForm" class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-cyan-300 uppercase tracking-wider mb-1 font-rajdhani">
+              Link Map Roblox
+            </label>
+            <input 
+              type="url" 
+              id="settingMapUrl" 
+              class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-400"
+            >
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-cyan-300 uppercase tracking-wider mb-1 font-rajdhani">
+              Link Discord
+            </label>
+            <input 
+              type="url" 
+              id="settingDiscordUrl" 
+              class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-400"
+            >
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-cyan-300 uppercase tracking-wider mb-1 font-rajdhani">
+              Link Komunitas Roblox
+            </label>
+            <input 
+              type="url" 
+              id="settingCommunityUrl" 
+              class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-400"
+            >
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-cyan-300 uppercase tracking-wider mb-1 font-rajdhani">
+              Link TikTok
+            </label>
+            <input 
+              type="url" 
+              id="settingTiktokUrl" 
+              class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-400"
+            >
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-cyan-300 uppercase tracking-wider mb-1 font-rajdhani">
+            Custom Audio URL (MP3 / Direct Audio Stream)
+          </label>
+          <input 
+            type="url" 
+            id="settingAudioUrl" 
+            class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border border-cyan-500/30 text-white text-xs sm:text-sm focus:outline-none focus:border-cyan-400"
+          >
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="cyber-btn py-3 px-6 text-xs sm:text-sm">
+            <span>💾 SIMPAN SEMUA PENGATURAN</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <script src="assets/js/admin-jp.js"></script>
+</body>
+</html>
